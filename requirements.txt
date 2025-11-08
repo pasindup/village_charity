@@ -1,0 +1,17 @@
+# Core Flask framework
+Flask==3.0.3
+
+# Database ORM
+Flask-SQLAlchemy==3.1.1
+
+# For password hashing
+Werkzeug==3.0.3
+
+# YAML route configuration support
+PyYAML==6.0.2
+
+# Optional (recommended for better structure & future migrations)
+Flask-Migrate==4.1.0
+
+# Optional (load .env configs)
+python-dotenv==1.0.1
