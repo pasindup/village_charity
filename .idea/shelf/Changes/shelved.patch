@@ -1,0 +1,52 @@
+Index: app/config.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import os\n\nclass Config:\n    SECRET_KEY = os.getenv(\"SECRET_KEY\", \"dev_secret_key\")\n\n    # MySQL connection URI format:\n    # mysql+pymysql://<username>:<password>@<host>/<database>\n    SQLALCHEMY_DATABASE_URI = os.getenv(\n        \"DATABASE_URL\",\n        \"mysql+pymysql://root:password@localhost/charity\"\n    )\n\n    SQLALCHEMY_TRACK_MODIFICATIONS = False\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/config.py b/app/config.py
+--- a/app/config.py	(revision 135c73955cf812d67e0b729cc660992bf1d2d1d6)
++++ b/app/config.py	(date 1762677386409)
+@@ -7,7 +7,7 @@
+     # mysql+pymysql://<username>:<password>@<host>/<database>
+     SQLALCHEMY_DATABASE_URI = os.getenv(
+         "DATABASE_URL",
+-        "mysql+pymysql://root:password@localhost/charity"
++        "mysql+pymysql://root@localhost/charity"
+     )
+ 
+     SQLALCHEMY_TRACK_MODIFICATIONS = False
+Index: app/models/users.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from app.db import db\nfrom werkzeug.security import generate_password_hash, check_password_hash\n\nclass User(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(80), unique=True, nullable=False)\n    password_hash = db.Column(db.String(128), nullable=False)\n\n    def set_password(self, password):\n        self.password_hash = generate_password_hash(password)\n\n    def check_password(self, password):\n        return check_password_hash(self.password_hash, password)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/models/users.py b/app/models/users.py
+--- a/app/models/users.py	(revision 135c73955cf812d67e0b729cc660992bf1d2d1d6)
++++ b/app/models/users.py	(date 1762679697630)
+@@ -4,7 +4,7 @@
+ class User(db.Model):
+     id = db.Column(db.Integer, primary_key=True)
+     username = db.Column(db.String(80), unique=True, nullable=False)
+-    password_hash = db.Column(db.String(128), nullable=False)
++    password_hash = db.Column(db.String(512), nullable=False)
+ 
+     def set_password(self, password):
+         self.password_hash = generate_password_hash(password)
+Index: .envrc
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>export SECRET_KEY='supersecret'\nexport DATABASE_URL='mysql+pymysql://root:password@localhost/flask_mvp_db'\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.envrc b/.envrc
+--- a/.envrc	(revision 135c73955cf812d67e0b729cc660992bf1d2d1d6)
++++ b/.envrc	(date 1762681399155)
+@@ -1,2 +1,2 @@
+ export SECRET_KEY='supersecret'
+-export DATABASE_URL='mysql+pymysql://root:password@localhost/flask_mvp_db'
++export DATABASE_URL='mysql+pymysql://root@localhost/charity'
