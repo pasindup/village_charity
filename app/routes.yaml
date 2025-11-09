@@ -1,0 +1,8 @@
+routes:
+  - path: /register
+    method: POST
+    handler: app.routes.auth_routes.register_user
+
+  - path: /login
+    method: POST
+    handler: app.routes.auth_routes.login_user
