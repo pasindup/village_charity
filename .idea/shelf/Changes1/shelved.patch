@@ -1,0 +1,14 @@
+Index: migrations/README
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Single-database configuration for Flask.\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/migrations/README b/migrations/README
+--- a/migrations/README	(revision 124c3b4ad3d3f2c030f5e0a2208feea470c1bfa0)
++++ b/migrations/README	(date 1763324231723)
+@@ -1,1 +1,2 @@
+ Single-database configuration for Flask.
++basic to normal application nan app with cong. as the final stage
+\ No newline at end of file
